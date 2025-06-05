@@ -1,6 +1,14 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
+
+// structs
+type Person struct {
+	Name string
+	Age  int
+}
 
 func main() {
 	//arrays
@@ -28,24 +36,53 @@ func main() {
 	fmt.Println(fruits)
 
 	//iterate through list
-	for index, value := range numbers{
+	for index, value := range numbers {
 		fmt.Println(index, value)
 	}
 
 	//maps
-	capitalCities:= map[string]string{
-		"USA":"Washington DC",
-		"India":"New Delhi",
-		"UK":"London",
+	capitalCities := map[string]string{
+		"USA":   "Washington DC",
+		"India": "New Delhi",
+		"UK":    "London",
 	}
 	fmt.Println(capitalCities["India"])
-	capital, exits :=capitalCities["Germany"]
-	if exits{
+	capital, exits := capitalCities["Germany"]
+	if exits {
 		fmt.Println(capital)
-	}else{
-		fmt.Println(exits,"Does not exist")
+	} else {
+		fmt.Println(exits, "Does not exist")
 	}
 
-	delete(capitalCities,"UK")
+	delete(capitalCities, "UK")
 	fmt.Println(capitalCities)
+
+	//using structs
+	person := Person{"John", 12} //Person{Name:"John", Age: 25}
+	fmt.Println(person)          //%v or %+v this gives both key and values
+
+	//anonymous strcut
+	employee := struct {
+		Name string
+		Age  int
+	}{"Raman", 25}
+	fmt.Println(employee)
+
+	//in go everything is passed by value and explicitely say by reference
+
+	//nested structs
+	type Address struct {
+		Street string
+		City   string
+	}
+
+	type Contact struct {
+		Name    string
+		Address Address
+		Phone   string
+	}
+
+	contact := Contact{"Marc", Address{"Sidhbari", "Dharamshala"}, "9021323434"}
+	fmt.Println(contact)
+	//If values are not passed then default values will be assigned like 0 for int
 }
