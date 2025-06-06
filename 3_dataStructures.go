@@ -10,7 +10,7 @@ type Person struct {
 	Age  int
 }
 
-func main() {
+func ds() {
 	//arrays
 	numbers := [5]int{10, 20, 30, 40, 50}
 	numbers[3] = 1100
@@ -85,4 +85,23 @@ func main() {
 	contact := Contact{"Marc", Address{"Sidhbari", "Dharamshala"}, "9021323434"}
 	fmt.Println(contact)
 	//If values are not passed then default values will be assigned like 0 for int
+
+	//pointers
+	fmt.Println(person.Name)
+	// modifyPersion(&person)
+	person.modifyPersion("Superman")
+	fmt.Println(person.Name)
+
+	x:=20
+	ptr:=&x
+	fmt.Printf("%d %p\n",x,ptr)
+	*ptr=30
+	fmt.Println(ptr,*ptr)
+}
+
+// func modifyPersion(person *Person){
+// 	person.Name = "Ganesh"
+// }
+func (p *Person) modifyPersion(name string){ //exists only for Person struct (p *Person) -> Method Receiver
+	p.Name = name
 }
